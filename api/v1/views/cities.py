@@ -127,7 +127,9 @@ def create_a_city(state_id):
     # Create a new City object and set its attributes
     new_city = City(
         state_id=state.id,  # Set the state_id from the URL parameter
-        name=data['name']  # Set the city name from the JSON data
+        name=data['name'],  # Set the city name from the JSON data
+        created_at=datetime.utcnow(),  # Set created_at using current UTC time
+        updated_at=datetime.utcnow()  # Set updated_at using current UTC time
     )
 
     # Add the new city to the state's cities
@@ -136,8 +138,11 @@ def create_a_city(state_id):
     # Save the changes to the database
     storage.save()
 
+    response = new_city.to_dict()
+    response["__class__"] = "City"
+
     # Return the newly created city with a 201 status code
-    return jsonify(new_city.to_dict()), 201
+    return jsonify(response), 201
 
 
 # Define a route to update details of a specified city
@@ -156,11 +161,9 @@ def update_a_city(city_id):
             }
         ), 404
 
-    try:
-        # Attempt to get JSON data from the request's body
-        data = request.get_json()
-    except ValueError:
-        # If JSON parsing fails, return a 400 error response
+    data = request.get_json()
+
+    if data is None:
         return jsonify(
             {
                 "error": "Not a JSON"
