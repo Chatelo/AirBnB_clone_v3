@@ -141,7 +141,7 @@ def create_a_city(state_id):
 
 
 # Define a route to update details of a specified city
-@app_views.route('/api/v1/cities/<city_id>', methods=['PUT'])
+@app_views.route('/cities/<city_id>', methods=['PUT'])
 def update_a_city(city_id):
     """
     Update details of a city based on its ID
