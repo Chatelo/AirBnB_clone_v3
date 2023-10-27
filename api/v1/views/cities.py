@@ -14,7 +14,7 @@ from api.v1.views import app_views
 
 
 # Define a route to get all cities
-@app_views.route('/cities', method=['GET'], strict_slashes=False)
+@app_views.route('/cities', methods=['GET'], strict_slashes=False)
 def get_all_cities():
     """
     Retrieve all cities from db
@@ -29,7 +29,7 @@ def get_all_cities():
 
 # Define a route to get all cities of a state
 @app_views.route(
-    '/states/<uuid:state_id>/cities', method=['GET'], strict_slashes=False)
+    '/states/<uuid:state_id>/cities', methods=['GET'], strict_slashes=False)
 def get_cities_of_state(state_id):
     """
     Retrieve all cities belonging to
@@ -51,7 +51,7 @@ def get_cities_of_state(state_id):
 
 # Define a route to get details of a city based on ID
 @app_views.route(
-    '/cities/<uuid:city_id>', method=['GET'], strict_slashes=False)
+    '/cities/<uuid:city_id>', methods=['GET'], strict_slashes=False)
 def get_details_of_a_city(city_id):
     """
     Retrieve all details of a city
@@ -70,7 +70,7 @@ def get_details_of_a_city(city_id):
 
 # Define a route to delete a city based on ID
 @app_views.route(
-    '/cities/<uuid:city_id>', method=['DELETE'], strict_slashes=False)
+    '/cities/<uuid:city_id>', methods=['DELETE'], strict_slashes=False)
 def delete_a_city(city_id):
     """
     Delete a city based on provided ID
@@ -93,7 +93,7 @@ def delete_a_city(city_id):
 
 # Define a route to create a city
 @app_views.route(
-    '/states/<state_id>/cities', method=['POST'], strict_slashes=False)
+    '/states/<state_id>/cities', methods=['POST'], strict_slashes=False)
 def create_a_city(state_id):
     """
     Create a city in a state provided
