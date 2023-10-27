@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 
+"""
+Check status of API
+"""
+
 from flask import jsonify
 from api.v1.views import app_views
 

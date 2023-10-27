@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-Define views
+Create a Blueprint for views
 """
 
 from flask import Blueprint
