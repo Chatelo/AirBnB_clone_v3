@@ -6,7 +6,7 @@ for version 1 of our clone
 """
 
 # Importing libraries and modules
-from flask import Flask, Blueprint,make_response, jsonify
+from flask import Flask, make_response, jsonify
 from models import storage
 from api.v1.views import app_views
 import os
