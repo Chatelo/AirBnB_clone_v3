@@ -14,6 +14,15 @@ from api.v1.views import app_views
 import datetime
 
 
+def UtcNow():
+    """
+    Get current time
+    """
+    now = datetime.datetime.utcnow()
+
+    return now.strftime("%Y-%m-%dT%H:%M:%S.%f")
+
+
 # Define a route to get all cities
 @app_views.route('/cities', methods=['GET'], strict_slashes=False)
 def get_all_cities():
@@ -129,8 +138,8 @@ def create_a_city(state_id):
     new_city = City(
         state_id=state.id,  # Set the state_id from the URL parameter
         name=data['name'],  # Set the city name from the JSON data
-        created_at=datetime.utcnow(),  # Set created_at using current UTC time
-        updated_at=datetime.utcnow()  # Set updated_at using current UTC time
+        created_at=UtcNow(),  # Set created_at using current UTC time
+        updated_at=UtcNow()  # Set updated_at using current UTC time
     )
 
     # Add the new city to the state's cities
