@@ -112,7 +112,7 @@ def create_a_city(state_id):
     if data is None:
         return jsonify(
             {
-                "error": "Invalid JSON"
+                "error": "Not a JSON"
             }
         ), 400
 
@@ -120,7 +120,7 @@ def create_a_city(state_id):
     if 'name' not in data:
         return jsonify(
             {
-                "error": "Missing 'name' field in JSON data"
+                "error": "Missing name"
             }
         ), 400
 
