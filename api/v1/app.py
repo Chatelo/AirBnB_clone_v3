@@ -6,7 +6,7 @@ for version 1 of our clone
 """
 
 # Importing libraries and modules
-from flask import Flask, Blueprint
+from flask import Flask, Blueprint, jsonify
 from models import storage
 from api.v1.views import app_views
 import os
@@ -24,6 +24,17 @@ def close_db(exception):
     Closes the storage on teardown
     """
     storage.close()
+
+
+@app.errorhandler(404)
+def not_found(error):
+    """ 404 Error
+    ---
+    responses:
+      404:
+        description: a resource was not found
+    """
+    return make_response(jsonify({'error': "Not found"}), 404)
 
 
 if __name__ == "__main__":
