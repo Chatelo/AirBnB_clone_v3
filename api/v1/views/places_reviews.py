@@ -7,7 +7,7 @@ that handle everything related to places and reviews
 
 
 # Importing
-from flask import jsonify, request
+from flask import jsonify, request, abort
 from models.place import Place
 from models.review import Review
 from models.user import User
