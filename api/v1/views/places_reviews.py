@@ -84,7 +84,7 @@ def create_review(place_id):
 
     review = Review(**data)
     review.place_id = place.id
-    review.save()
+    storage.save()
 
     return jsonify(review.to_dict()), 201
 
