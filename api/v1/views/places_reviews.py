@@ -10,6 +10,7 @@ that handle everything related to places and reviews
 from flask import jsonify, request
 from models.place import Place
 from models.review import Review
+from models.user import User
 from models import storage
 from api.v1.views import app_views
 
