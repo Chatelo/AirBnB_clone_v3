@@ -11,16 +11,6 @@ from models.city import City
 from models.state import State
 from models import storage
 from api.v1.views import app_views
-import datetime
-
-
-def UtcNow():
-    """
-    Get current time
-    """
-    now = datetime.datetime.utcnow()
-
-    return now.strftime("%Y-%m-%dT%H:%M:%S.%f")
 
 
 # Define a route to get all cities
@@ -135,24 +125,13 @@ def create_a_city(state_id):
         ), 400
 
     # Create a new City object and set its attributes
-    new_city = City(
-        state_id=state.id,  # Set the state_id from the URL parameter
-        name=data['name'],  # Set the city name from the JSON data
-        created_at=UtcNow(),  # Set created_at using current UTC time
-        updated_at=UtcNow()  # Set updated_at using current UTC time
-    )
-
-    # Add the new city to the state's cities
-    state.cities.append(new_city)
+    new_city = City(**data)
 
     # Save the changes to the database
     storage.save()
 
-    response = new_city.to_dict()
-    response["__class__"] = "City"
-
     # Return the newly created city with a 201 status code
-    return jsonify(response), 201
+    return jsonify(new_city.to_dict()), 201
 
 
 # Define a route to update details of a specified city
